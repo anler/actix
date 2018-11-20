@@ -32,10 +32,10 @@ thread_local!(
 /// thread. Arbiter provides several api for event loop access. Each arbiter
 /// can belongs to specific `System` actor.
 ///
-/// By default, a panic in an Arbiter does _not_ stop the rest of the System,
-/// unless the panic is in the System actor. Users of Arbiter can opt into
-/// shutting down the system on panic by using `Arbiter::builder()` and enabling
-/// `stop_system_on_panic`.
+/// By default, a panic in an Arbiter stops the rest of the System, if Arbiter's
+/// `stop_system_on_panic` is set to `false` it won't, unless the panic is in the
+/// System actor. Users of Arbiter can opt into shutting down the system on panic
+/// by using `Arbiter::builder()` and enabling `stop_system_on_panic`.
 #[derive(Debug)]
 pub struct Arbiter {
     stop: Option<Sender<i32>>,
